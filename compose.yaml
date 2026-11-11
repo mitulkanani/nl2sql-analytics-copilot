@@ -1,0 +1,20 @@
+services:
+  analytics-copilot:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: "Natural Language to SQL Analytics Copilot"
+      ENVIRONMENT: "development"
+      AI_PROVIDER: "${AI_PROVIDER:-mock}"
+      OPENAI_API_KEY: "${OPENAI_API_KEY:-}"
+      OPENAI_MODEL: "${OPENAI_MODEL:-gpt-4o-mini}"
+      DATABASE_PATH: "/app/data/analytics.db"
+      MAX_ROWS: "100"
+      QUERY_TIMEOUT_SECONDS: "3"
+    volumes:
+      - analytics_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  analytics_data:

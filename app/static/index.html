@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f6f8fb" />
+  <title>DataPilot · Analytics Copilot</title>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">D</div><div><strong>DataPilot</strong><small>Analytics Copilot</small></div></div>
+      <div class="workspace-label">WORKSPACE</div>
+      <div class="workspace"><span class="workspace-dot"></span><span>Commerce Demo</span><span class="chevron">⌄</span></div>
+      <nav class="nav-list" aria-label="Main navigation">
+        <a class="nav-item active" href="#ask"><span>✳</span> Ask data</a>
+        <a class="nav-item" href="#history"><span>◷</span> Query history</a>
+        <a class="nav-item" href="#schema"><span>▤</span> Data schema</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="safe-label"><span class="safe-dot"></span> Read-only connection</div><p>Queries run against an approved analytics schema. Writes and unknown tables are blocked.</p><a href="/docs">API documentation ↗</a></div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar"><div><span class="eyebrow">BUSINESS INTELLIGENCE</span><h1>Ask your data</h1></div><div class="topbar-right"><span class="status-pill"><span class="safe-dot"></span> Demo database connected</span><div class="avatar">TN</div></div></header>
+      <section class="hero" id="ask">
+        <div class="hero-copy"><div class="sparkle">✳</div><h2>What would you like to know?</h2><p>Ask a question in plain English. DataPilot turns it into validated SQL and explains the result.</p></div>
+        <form id="query-form" class="query-box">
+          <textarea id="question" rows="3" maxlength="1000" placeholder="e.g. Show monthly revenue trend for completed orders..." required></textarea>
+          <div class="query-box-footer"><span class="input-hint">Try a business question · No SQL required</span><button id="ask-button" type="submit">Run analysis <span>↗</span></button></div>
+        </form>
+        <div class="examples"><span class="examples-label">TRY ASKING</span>
+          <button class="example-chip" data-question="Show monthly revenue trend">Monthly revenue trend</button>
+          <button class="example-chip" data-question="Which products have the highest revenue?">Top products</button>
+          <button class="example-chip" data-question="Compare sales by region">Sales by region</button>
+          <button class="example-chip" data-question="How many orders are in each status?">Orders by status</button>
+        </div>
+      </section>
+      <section id="error-panel" class="error-panel hidden" role="alert"></section>
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="section-heading"><div><span class="eyebrow">ANALYSIS RESULT</span><h2 id="result-title">Query results</h2></div><span id="provider-badge" class="provider-badge">MOCK PROVIDER</span></div>
+        <div class="insight-card"><div class="insight-icon">✧</div><div><span class="insight-label">ANALYST SUMMARY</span><p id="explanation"></p></div></div>
+        <div class="metric-strip"><div class="metric"><span>Rows returned</span><strong id="row-count">—</strong></div><div class="metric"><span>Execution time</span><strong id="execution-time">—</strong></div><div class="metric"><span>Result status</span><strong id="result-status">Complete</strong></div></div>
+        <div class="result-grid"><div class="panel chart-panel"><div class="panel-heading"><div><span class="eyebrow">VISUALIZATION</span><h3>Data overview</h3></div><span id="chart-type" class="subtle-tag">TABLE</span></div><div id="chart-area" class="chart-area"></div></div>
+          <div class="panel sql-panel"><div class="panel-heading"><div><span class="eyebrow">GENERATED QUERY</span><h3>Validated SQL</h3></div><button id="copy-sql" class="text-button" type="button">Copy SQL</button></div><pre><code id="sql-code"></code></pre><div class="sql-note"><span class="safe-dot"></span> Read-only policy validated</div></div>
+        </div>
+        <div class="panel table-panel"><div class="panel-heading"><div><span class="eyebrow">QUERY OUTPUT</span><h3>Result table</h3></div><span id="truncated-label" class="subtle-tag hidden">LIMITED RESULT</span></div><div class="table-scroll"><table><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div></div>
+      </section>
+      <section class="lower-grid">
+        <div class="panel" id="history"><div class="panel-heading"><div><span class="eyebrow">RECENT ACTIVITY</span><h3>Query history</h3></div><button class="text-button" id="refresh-history" type="button">Refresh</button></div><div id="history-list" class="history-list"><div class="empty-state">Your recent questions will appear here.</div></div></div>
+        <div class="panel schema-panel" id="schema"><div class="panel-heading"><div><span class="eyebrow">CONNECTED DATA</span><h3>Approved schema</h3></div><span class="subtle-tag">4 TABLES</span></div><div id="schema-list" class="schema-list"><div class="empty-state">Loading schema…</div></div></div>
+      </section>
+      <footer>DataPilot · Natural Language to SQL Analytics Copilot <span>Built by ThinkNovus Technologies</span></footer>
+    </main>
+  </div>
+  <script src="/assets/app.js" defer></script>
+</body>
+</html>
